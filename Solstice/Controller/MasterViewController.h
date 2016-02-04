@@ -12,8 +12,9 @@
 
 @interface MasterViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *contactTable;
 @property (strong, nonatomic) DetailViewController *detailViewController;
-
+@property NSMutableArray *contactArray;
 
 @end
 

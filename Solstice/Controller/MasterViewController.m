@@ -8,13 +8,17 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-
+#import "ViewManager.h"
+#import "Constants.h"
+#import "ContactTableViewCell.h"
+#import "ContactObject.h"
 @interface MasterViewController ()
 
 @property NSMutableArray *objects;
 @end
 
-@implementation MasterViewController
+@implementation MasterViewController {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +28,9 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    [[HudManager sharedHudManager] bindOnView:self.view];
+    [[ViewManager sharedViewManager] setViewsMaster:self DetailView:self.detailViewController];
+    [[ViewManager sharedViewManager] fetchContacts];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,14 +72,37 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    NSLog(@"rows :%ld",self.contactArray.count);
+    return self.contactArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ContactTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CONTACT_CELL_IDENTIFIER];
+    
+    ContactObject *curContact = [self.contactArray objectAtIndex:indexPath.row];
+    cell.curContact = curContact;
+    cell.profileNameLabel.text = curContact.name;
+    cell.profilePhoneLabel.text = curContact.homePhone;
+    cell.profileImageView.image = nil; // or cell.poster.image = [UIImage imageNamed:@"placeholder.png"];
+    
+//    NSURL *url = [NSURL URLWithString:curContact.smallImageUrl];
+    NSLog(@"url is %@",curContact.smallImageUrl);
+    [cell.profileImageView sd_setImageWithURL:[NSURL URLWithString:curContact.smallImageUrl]
+                      placeholderImage:[UIImage imageNamed:@"blackPic.jpg"]];
+//    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        if (data) {
+//            UIImage *image = [UIImage imageWithData:data];
+//            if (image) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    ContactTableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+//                    if (updateCell)
+//                        updateCell.profileImageView.image = image;
+//                });
+//            }
+//        }
+//    }];
+//    [task resume];
 
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
     return cell;
 }
 
