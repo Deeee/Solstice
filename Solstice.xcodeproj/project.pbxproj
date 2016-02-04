@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5BB4E7E01C63ACBA00351165 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E7DF1C63ACBA00351165 /* main.m */; };
+		5BB4E7E31C63ACBA00351165 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E7E21C63ACBA00351165 /* AppDelegate.m */; };
+		5BB4E7E61C63ACBA00351165 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E7E51C63ACBA00351165 /* MasterViewController.m */; };
+		5BB4E7E91C63ACBA00351165 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E7E81C63ACBA00351165 /* DetailViewController.m */; };
+		5BB4E7EC1C63ACBA00351165 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E7EA1C63ACBA00351165 /* Main.storyboard */; };
+		5BB4E7EE1C63ACBA00351165 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E7ED1C63ACBA00351165 /* Assets.xcassets */; };
+		5BB4E7F11C63ACBA00351165 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E7EF1C63ACBA00351165 /* LaunchScreen.storyboard */; };
+		5BB4E7FC1C63ACBA00351165 /* SolsticeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E7FB1C63ACBA00351165 /* SolsticeTests.m */; };
+		5BB4E8071C63ACBA00351165 /* SolsticeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E8061C63ACBA00351165 /* SolsticeUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BB4E7F81C63ACBA00351165 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BB4E7D31C63ACBA00351165 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BB4E7DA1C63ACBA00351165;
+			remoteInfo = Solstice;
+		};
+		5BB4E8031C63ACBA00351165 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BB4E7D31C63ACBA00351165 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BB4E7DA1C63ACBA00351165;
+			remoteInfo = Solstice;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5BB4E7DB1C63ACBA00351165 /* Solstice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solstice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB4E7DF1C63ACBA00351165 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5BB4E7E11C63ACBA00351165 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5BB4E7E21C63ACBA00351165 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5BB4E7E41C63ACBA00351165 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		5BB4E7E51C63ACBA00351165 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		5BB4E7E71C63ACBA00351165 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		5BB4E7E81C63ACBA00351165 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		5BB4E7EB1C63ACBA00351165 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5BB4E7ED1C63ACBA00351165 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BB4E7F01C63ACBA00351165 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5BB4E7F21C63ACBA00351165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB4E7F71C63ACBA00351165 /* SolsticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolsticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB4E7FB1C63ACBA00351165 /* SolsticeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolsticeTests.m; sourceTree = "<group>"; };
+		5BB4E7FD1C63ACBA00351165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB4E8021C63ACBA00351165 /* SolsticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolsticeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB4E8061C63ACBA00351165 /* SolsticeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolsticeUITests.m; sourceTree = "<group>"; };
+		5BB4E8081C63ACBA00351165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5BB4E7D81C63ACBA00351165 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB4E7F41C63ACBA00351165 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB4E7FF1C63ACBA00351165 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5BB4E7D21C63ACBA00351165 = {
+			isa = PBXGroup;
+			children = (
+				5BB4E7DD1C63ACBA00351165 /* Solstice */,
+				5BB4E7FA1C63ACBA00351165 /* SolsticeTests */,
+				5BB4E8051C63ACBA00351165 /* SolsticeUITests */,
+				5BB4E7DC1C63ACBA00351165 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5BB4E7DC1C63ACBA00351165 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BB4E7DB1C63ACBA00351165 /* Solstice.app */,
+				5BB4E7F71C63ACBA00351165 /* SolsticeTests.xctest */,
+				5BB4E8021C63ACBA00351165 /* SolsticeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BB4E7DD1C63ACBA00351165 /* Solstice */ = {
+			isa = PBXGroup;
+			children = (
+				5BB4E7E11C63ACBA00351165 /* AppDelegate.h */,
+				5BB4E7E21C63ACBA00351165 /* AppDelegate.m */,
+				5BB4E7E41C63ACBA00351165 /* MasterViewController.h */,
+				5BB4E7E51C63ACBA00351165 /* MasterViewController.m */,
+				5BB4E7E71C63ACBA00351165 /* DetailViewController.h */,
+				5BB4E7E81C63ACBA00351165 /* DetailViewController.m */,
+				5BB4E7EA1C63ACBA00351165 /* Main.storyboard */,
+				5BB4E7ED1C63ACBA00351165 /* Assets.xcassets */,
+				5BB4E7EF1C63ACBA00351165 /* LaunchScreen.storyboard */,
+				5BB4E7F21C63ACBA00351165 /* Info.plist */,
+				5BB4E7DE1C63ACBA00351165 /* Supporting Files */,
+			);
+			path = Solstice;
+			sourceTree = "<group>";
+		};
+		5BB4E7DE1C63ACBA00351165 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5BB4E7DF1C63ACBA00351165 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5BB4E7FA1C63ACBA00351165 /* SolsticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				5BB4E7FB1C63ACBA00351165 /* SolsticeTests.m */,
+				5BB4E7FD1C63ACBA00351165 /* Info.plist */,
+			);
+			path = SolsticeTests;
+			sourceTree = "<group>";
+		};
+		5BB4E8051C63ACBA00351165 /* SolsticeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5BB4E8061C63ACBA00351165 /* SolsticeUITests.m */,
+				5BB4E8081C63ACBA00351165 /* Info.plist */,
+			);
+			path = SolsticeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5BB4E7DA1C63ACBA00351165 /* Solstice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BB4E80B1C63ACBA00351165 /* Build configuration list for PBXNativeTarget "Solstice" */;
+			buildPhases = (
+				5BB4E7D71C63ACBA00351165 /* Sources */,
+				5BB4E7D81C63ACBA00351165 /* Frameworks */,
+				5BB4E7D91C63ACBA00351165 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Solstice;
+			productName = Solstice;
+			productReference = 5BB4E7DB1C63ACBA00351165 /* Solstice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5BB4E7F61C63ACBA00351165 /* SolsticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BB4E80E1C63ACBA00351165 /* Build configuration list for PBXNativeTarget "SolsticeTests" */;
+			buildPhases = (
+				5BB4E7F31C63ACBA00351165 /* Sources */,
+				5BB4E7F41C63ACBA00351165 /* Frameworks */,
+				5BB4E7F51C63ACBA00351165 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BB4E7F91C63ACBA00351165 /* PBXTargetDependency */,
+			);
+			name = SolsticeTests;
+			productName = SolsticeTests;
+			productReference = 5BB4E7F71C63ACBA00351165 /* SolsticeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5BB4E8011C63ACBA00351165 /* SolsticeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BB4E8111C63ACBA00351165 /* Build configuration list for PBXNativeTarget "SolsticeUITests" */;
+			buildPhases = (
+				5BB4E7FE1C63ACBA00351165 /* Sources */,
+				5BB4E7FF1C63ACBA00351165 /* Frameworks */,
+				5BB4E8001C63ACBA00351165 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BB4E8041C63ACBA00351165 /* PBXTargetDependency */,
+			);
+			name = SolsticeUITests;
+			productName = SolsticeUITests;
+			productReference = 5BB4E8021C63ACBA00351165 /* SolsticeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5BB4E7D31C63ACBA00351165 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Di Liu";
+				TargetAttributes = {
+					5BB4E7DA1C63ACBA00351165 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					5BB4E7F61C63ACBA00351165 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 5BB4E7DA1C63ACBA00351165;
+					};
+					5BB4E8011C63ACBA00351165 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 5BB4E7DA1C63ACBA00351165;
+					};
+				};
+			};
+			buildConfigurationList = 5BB4E7D61C63ACBA00351165 /* Build configuration list for PBXProject "Solstice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5BB4E7D21C63ACBA00351165;
+			productRefGroup = 5BB4E7DC1C63ACBA00351165 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5BB4E7DA1C63ACBA00351165 /* Solstice */,
+				5BB4E7F61C63ACBA00351165 /* SolsticeTests */,
+				5BB4E8011C63ACBA00351165 /* SolsticeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5BB4E7D91C63ACBA00351165 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB4E7F11C63ACBA00351165 /* LaunchScreen.storyboard in Resources */,
+				5BB4E7EE1C63ACBA00351165 /* Assets.xcassets in Resources */,
+				5BB4E7EC1C63ACBA00351165 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB4E7F51C63ACBA00351165 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB4E8001C63ACBA00351165 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BB4E7D71C63ACBA00351165 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB4E7E31C63ACBA00351165 /* AppDelegate.m in Sources */,
+				5BB4E7E61C63ACBA00351165 /* MasterViewController.m in Sources */,
+				5BB4E7E01C63ACBA00351165 /* main.m in Sources */,
+				5BB4E7E91C63ACBA00351165 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB4E7F31C63ACBA00351165 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB4E7FC1C63ACBA00351165 /* SolsticeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BB4E7FE1C63ACBA00351165 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BB4E8071C63ACBA00351165 /* SolsticeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BB4E7F91C63ACBA00351165 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BB4E7DA1C63ACBA00351165 /* Solstice */;
+			targetProxy = 5BB4E7F81C63ACBA00351165 /* PBXContainerItemProxy */;
+		};
+		5BB4E8041C63ACBA00351165 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BB4E7DA1C63ACBA00351165 /* Solstice */;
+			targetProxy = 5BB4E8031C63ACBA00351165 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5BB4E7EA1C63ACBA00351165 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BB4E7EB1C63ACBA00351165 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5BB4E7EF1C63ACBA00351165 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BB4E7F01C63ACBA00351165 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5BB4E8091C63ACBA00351165 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5BB4E80A1C63ACBA00351165 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5BB4E80C1C63ACBA00351165 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Solstice/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.Solstice";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5BB4E80D1C63ACBA00351165 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Solstice/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.Solstice";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5BB4E80F1C63ACBA00351165 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SolsticeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.SolsticeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Solstice.app/Solstice";
+			};
+			name = Debug;
+		};
+		5BB4E8101C63ACBA00351165 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SolsticeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.SolsticeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Solstice.app/Solstice";
+			};
+			name = Release;
+		};
+		5BB4E8121C63ACBA00351165 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SolsticeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.SolsticeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Solstice;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5BB4E8131C63ACBA00351165 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SolsticeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.SolsticeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Solstice;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5BB4E7D61C63ACBA00351165 /* Build configuration list for PBXProject "Solstice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB4E8091C63ACBA00351165 /* Debug */,
+				5BB4E80A1C63ACBA00351165 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BB4E80B1C63ACBA00351165 /* Build configuration list for PBXNativeTarget "Solstice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB4E80C1C63ACBA00351165 /* Debug */,
+				5BB4E80D1C63ACBA00351165 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5BB4E80E1C63ACBA00351165 /* Build configuration list for PBXNativeTarget "SolsticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB4E80F1C63ACBA00351165 /* Debug */,
+				5BB4E8101C63ACBA00351165 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5BB4E8111C63ACBA00351165 /* Build configuration list for PBXNativeTarget "SolsticeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BB4E8121C63ACBA00351165 /* Debug */,
+				5BB4E8131C63ACBA00351165 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5BB4E7D31C63ACBA00351165 /* Project object */;
+}
