@@ -218,6 +218,39 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if (indexPath.section == 1) {
+        NSString *detailText = [self.curContact.homeAddress objectAtIndex:[indexPath row]];
+        if([detailText length] == 0) {
+            return 44;
+        }
+        CGSize constraint = CGSizeMake(248, 20000.0f);
+        
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [style setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        // make dictionary of attributes with paragraph style
+        NSDictionary *sizeAttributes = @{NSFontAttributeName:FONT_Futura_Medium(16), NSParagraphStyleAttributeName: style};
+        
+        CGRect frame = [detailText boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:sizeAttributes context:nil];
+//        CGRect rect = [Helper boundingRectWithFont:FONT_Yuanti_R(14) constrainedToSize:constraint lineBreakMode: andText:detailText];
+        //        CGSize size = [detailText sizeWithAttributes:
+        //                       @{NSFontAttributeName: FONT_Yuanti_R(12)}];
+        
+        // Values are fractional -- you should take the ceilf to get equivalent values
+        CGSize adjustedSize = CGSizeMake(ceilf(frame.size.width), ceilf(frame.size.height));
+        //        CGSize size = [detailText sizeWithFont: FONT_Yuanti_R(12) constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+        
+        /* get max size between original one and new one */
+        CGFloat height = MAX(adjustedSize.height+20, 44.0f);
+        return height;
+        
+        
+    }
+    return 44;
+}
+
 #pragma mark - Keyboard text editing
 - (void) dismissKeyboard
 {
