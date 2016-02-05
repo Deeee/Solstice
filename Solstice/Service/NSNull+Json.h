@@ -1,6 +1,6 @@
 //
 //  NSNull+Json.h
-//  prolific
+//  Solstice
 //
 //  Created by Liu Di on 4/4/15.
 //

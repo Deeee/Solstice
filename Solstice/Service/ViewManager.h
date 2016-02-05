@@ -10,6 +10,7 @@
 @class MasterViewController;
 @class DetailViewController;
 @class ContactObject;
+@class UILabel;
 @interface ViewManager : NSObject
 @property MasterViewController *masterView;
 @property DetailViewController *detailView;
@@ -22,4 +23,8 @@
 - (void) fetchContactsDetailsOnContact:(ContactObject *)contact;
 
 - (void) setViewsMaster:(MasterViewController *) master DetailView:(DetailViewController*) detail;
+
+- (void) setTitleLabel:(UILabel *)label WithText:(NSString *)text;
+- (void) setLabel:(UILabel *)label WithText:(NSString *)text;
+
 @end

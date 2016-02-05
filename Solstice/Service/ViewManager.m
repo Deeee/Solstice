@@ -2,6 +2,9 @@
 //  ViewManager.m
 //  Solstice
 //
+//  Manager for all views
+//  Responsible for setup and update views
+//
 //  Created by Liu Di on 2/4/16.
 //  Copyright © 2016 Di Liu. All rights reserved.
 //
@@ -47,6 +50,7 @@
     masterView = master;
     detailView = detail;
 }
+
 - (void) reloadMasterViewOnSuccessfulDownload {
     NSLog(@"reloading");
     [masterView.tableView reloadData];
@@ -64,11 +68,14 @@
         NSLog(@"%@",responseObject);
         masterView.contactArray = [ContactObject parseContactJson:responseObject];
         [masterView.tableView reloadData];
+        [masterView.tableView.mj_header endRefreshing];
+        [self reExtractFavoriteOnTappingFavorite];
         [[HudManager sharedHudManager] popTopHud];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error: %@",[error localizedDescription]);
         [[HudManager sharedHudManager] popTopHud];
+        [masterView.tableView.mj_header endRefreshing];
         [[AlertViewManager sharedAlertViewManager] showNetworkErrorAlertTemporary];
     }];
     [[HudManager sharedHudManager] showHudWithText:@"Downloading contacts..."];
@@ -92,5 +99,18 @@
         [[AlertViewManager sharedAlertViewManager] showNetworkErrorAlertTemporary];
     }];
     [operation start];
+}
+
+#pragma mark - Convenient methods
+
+- (void) setTitleLabel:(UILabel *)label WithText:(NSString *)text {
+    label.textColor = [UIColor blackColor];
+    label.font = FONT_Futura_CondenseExtraBold(16);
+    label.text = text;
+}
+- (void) setLabel:(UILabel *)label WithText:(NSString *)text {
+    label.textColor = [UIColor blackColor];
+    label.font = FONT_Futura_Medium(16);
+    label.text = text;
 }
 @end

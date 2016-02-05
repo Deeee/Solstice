@@ -8,8 +8,6 @@ target 'Solstice' do
 pod 'MBProgressHUD', '~> 0.9.1'
 pod "AFNetworking", "~> 2.0"
 pod 'MJRefresh'
-pod 'SBJson', '~> 4.0.0'
-pod 'DZNEmptyDataSet'
 pod "TSMessages"
 pod 'SDWebImage/WebP'
 pod 'KIInPlaceEdit'

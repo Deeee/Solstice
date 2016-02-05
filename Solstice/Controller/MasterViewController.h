@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class DetailViewController;
-
+@class MJRefreshNormalHeader;
 @interface MasterViewController : UITableViewController <UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *contactTable;

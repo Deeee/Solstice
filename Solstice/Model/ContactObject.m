@@ -24,6 +24,7 @@
     }
     return self;
 }
+/* class method to extract all favorite contacts */
 +(NSMutableArray *) extractFavorites:(NSMutableArray *) contactsArray {
     NSMutableArray *favorites = [NSMutableArray new];
     for (ContactObject *contact in contactsArray) {
@@ -34,6 +35,8 @@
     }
     return favorites;
 }
+
+/* class method to parse json into contact array */
 +(NSMutableArray *) parseContactJson:(NSArray *)json {
     NSMutableArray *ret = [NSMutableArray new];
     for (NSDictionary *contact in json) {
@@ -62,6 +65,7 @@
     }
     return ret;
 }
+/* class method to update contact based on detailsurl*/
 -(void) updateContactWithJson:(NSDictionary *)json {
     self.isFavorite = [[json objectForKey:@"favorite"] boolValue];
     self.largeImageUrl = [[json objectForKey:@"largeImageURL"] description];
@@ -77,6 +81,8 @@
     
 }
 
+
+/* key value encode and decoding, for JNKeychain */
 - (void) encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject: [self company] forKey: @"company"];
     [aCoder encodeObject: [self detailsUrl] forKey: @"detailsUrl"];
@@ -91,7 +97,6 @@
 
     [aCoder encodeObject: [NSNumber numberWithInt:[self birthDate]] forKey:@"birthDate"];
     [aCoder encodeObject: [NSNumber numberWithBool:self.isFavorite] forKey:@"isFavorite"];
-    //    [aCoder encodeObject: [self selectedOption] forKey:@"selectedOption"];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {

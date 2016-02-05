@@ -2,6 +2,8 @@
 //  AlertViewManager.m
 //  Solstice
 //
+//  AlertView manager, responsible for displaying alert
+//
 //  Created by Liu Di on 2/4/16.
 //  Copyright © 2016 Di Liu. All rights reserved.
 //

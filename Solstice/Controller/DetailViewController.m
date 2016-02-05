@@ -31,6 +31,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     /* 1 is name 2 is company 3 is cell textfield */
     int textfieldFlag;
 }
+
 @synthesize curContact;
 #pragma mark - Managing the detail item
 
@@ -38,24 +39,27 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     if (curContact != newContact) {
         curContact = newContact;
         
-        // Update the view.
+        /* Update the view. */
         [self configureView];
     }
 }
 
 - (void)configureView {
-    // Update the user interface for the detail item.
+    /* Update the user interface for the detail item. */
     if (self.curContact) {
         self.nameLabel.tag = 11;
         self.companyLabel.tag = 12;
-        [self setLabel:self.nameLabel WithText:self.curContact.name];
-        [self setLabel:self.companyLabel WithText:self.curContact.company];
-
+        [self setIPELabel:self.nameLabel WithText:self.curContact.name];
+        [self setIPELabel:self.companyLabel WithText:self.curContact.company];
+        
+        /* setup profile picture */
         [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:self.curContact.largeImageUrl]
                                  placeholderImage:[UIImage imageNamed:@"blackPic.jpg"]];
         [self.favorite.titleLabel setFont:FONT_BS_Awesome(20)];
         [self.favorite setTintColor:self.view.tintColor];
         [self.favorite addTarget:self action:@selector(tapOnFavorite:) forControlEvents:UIControlEventTouchUpInside];
+        
+        /* setup favorite star button */
         if (curContact.isFavorite) {
             [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
         }
@@ -64,8 +68,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         }
         
     }
-    [self setTitleLabel:self.nameTitleLabel WithText:@"Name"];
-    [self setTitleLabel:self.companyTitleLabel WithText:@"Company"];
+    [[ViewManager sharedViewManager] setTitleLabel:self.nameTitleLabel WithText:@"Name"];
+    [[ViewManager sharedViewManager] setTitleLabel:self.companyTitleLabel WithText:@"Company"];
 }
 
 - (void)viewDidLoad {
@@ -78,7 +82,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.profileImageView.layer.cornerRadius = kProfileCornerRadius;
     self.profileImageView.clipsToBounds = YES;
-    // Do any additional setup after loading the view, typically from a nib.
+    /* initial setup for the view */
     [self configureView];
 }
 
@@ -94,6 +98,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    /* since all contact informations are arranged in the same order
+       we can safely assume their positions
+     */
     if (section == 0) {
         return curContact.homePhone.count+curContact.workPhone.count+curContact.mobilePhone.count;
     }
@@ -109,13 +116,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     return 0;
 }
 
+/* reconfigure header view */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CGRect frame = tableView.frame;
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 30)];
-    [self setTitleLabel:title WithText:kHeaderTitles[section]];
+    [[ViewManager sharedViewManager] setTitleLabel:title WithText:kHeaderTitles[section]];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
     [headerView setBackgroundColor:[UIColor whiteColor]];
     [headerView addSubview:title];
+    /* add a plus button if it is not birthdate section */
     if (section != 2) {
         UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-60, 0, 30, 30)];
         [addButton setTitle:@"+" forState:UIControlStateNormal];
@@ -142,27 +151,24 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         cell = [nib objectAtIndex:0];
         
     }
-    
+    /* get cell content accordingly */
     if (indexPath.section == 0) {
         if (indexPath.row < curContact.homePhone.count) {
-            [self setLabel:cell.contentLabel WithText:[curContact.homePhone objectAtIndex:indexPath.row]];
-            [self setLabel:cell.categoryLabel WithText:@"Home"];
+            [self setIPELabel:cell.contentLabel WithText:[curContact.homePhone objectAtIndex:indexPath.row]];
+            [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Home"];
         }
         else if(indexPath.row < (curContact.mobilePhone.count+curContact.homePhone.count)) {
-            
-            [self setLabel:cell.contentLabel WithText:[curContact.mobilePhone objectAtIndex:indexPath.row-curContact.homePhone.count]];
-            [self setLabel:cell.categoryLabel WithText:@"Mobile"];
+            [self setIPELabel:cell.contentLabel WithText:[curContact.mobilePhone objectAtIndex:indexPath.row-curContact.homePhone.count]];
+            [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Mobile"];
         }
         else {
-            
-            [self setLabel:cell.contentLabel WithText:[curContact.workPhone objectAtIndex:indexPath.row-curContact.homePhone.count-curContact.mobilePhone.count]];
-            [self setLabel:cell.categoryLabel WithText:@"Work"];
+            [self setIPELabel:cell.contentLabel WithText:[curContact.workPhone objectAtIndex:indexPath.row-curContact.homePhone.count-curContact.mobilePhone.count]];
+            [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Work"];
         }
     }
     else if (indexPath.section == 1) {
-        [self setLabel:cell.contentLabel WithText:[curContact.homeAddress objectAtIndex:indexPath.row]];
-        [self setLabel:cell.categoryLabel WithText:@"Home"];
-        
+        [self setIPELabel:cell.contentLabel WithText:[curContact.homeAddress objectAtIndex:indexPath.row]];
+        [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Home"];
     }
     else if (indexPath.section == 2) {
         NSTimeInterval timeInterval = (NSTimeInterval)curContact.birthDate;
@@ -170,13 +176,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat: @"yyyy-MM-dd"];
         NSString *stringFromDate = [formatter stringFromDate:date];
-        [self setLabel:cell.contentLabel WithText:stringFromDate];
-        [self setLabel:cell.categoryLabel WithText:@" "];
+        [self setIPELabel:cell.contentLabel WithText:stringFromDate];
+        [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@" "];
     }
     else if (indexPath.section == 3) {
-        
-        [self setLabel:cell.contentLabel WithText:[curContact.workEmail objectAtIndex:indexPath.row]];
-        [self setLabel:cell.categoryLabel WithText:@"Work"];    }
+        [self setIPELabel:cell.contentLabel WithText:[curContact.workEmail objectAtIndex:indexPath.row]];
+        [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Work"];
+    }
     return cell;
 }
 
@@ -211,15 +217,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         }
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        
-        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
 
+/* resizable cell for address section */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+    /* only resize height if we are at address section */
     if (indexPath.section == 1) {
         NSString *detailText = [self.curContact.homeAddress objectAtIndex:[indexPath row]];
         if([detailText length] == 0) {
@@ -230,22 +236,18 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         [style setLineBreakMode:NSLineBreakByWordWrapping];
         
-        // make dictionary of attributes with paragraph style
+        /* make dictionary of attributes with paragraph style */
         NSDictionary *sizeAttributes = @{NSFontAttributeName:FONT_Futura_Medium(16), NSParagraphStyleAttributeName: style};
         
         CGRect frame = [detailText boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:sizeAttributes context:nil];
-//        CGRect rect = [Helper boundingRectWithFont:FONT_Yuanti_R(14) constrainedToSize:constraint lineBreakMode: andText:detailText];
-        //        CGSize size = [detailText sizeWithAttributes:
-        //                       @{NSFontAttributeName: FONT_Yuanti_R(12)}];
         
-        // Values are fractional -- you should take the ceilf to get equivalent values
+        /* Values are fractional -- you should take the ceilf to get equivalent values */
         CGSize adjustedSize = CGSizeMake(ceilf(frame.size.width), ceilf(frame.size.height));
-        //        CGSize size = [detailText sizeWithFont: FONT_Yuanti_R(12) constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+        
         
         /* get max size between original one and new one */
         CGFloat height = MAX(adjustedSize.height+20, 44.0f);
         return height;
-        
         
     }
     return 44;
@@ -314,19 +316,21 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [UIView commitAnimations];
 }
 
+/* distinguish name label */
 - (void)textFieldDidBeginEditingForName:(UITextField *)textField
 {
-    
     textfieldFlag = 1;
     [self textFieldDidBeginEditing:textField];
 }
 
+/* distinguish company label */
 - (void)textFieldDidBeginEditingForCompany:(UITextField *)textField
 {
     textfieldFlag = 2;
     [self textFieldDidBeginEditing:textField];
 }
 
+/* distinguish all other cell labels */
 - (void)textFieldDidBeginEditingForCell:(UITextField *)textField
 {
     
@@ -394,7 +398,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     [[ViewManager sharedViewManager] syncContacts];
     [[ViewManager sharedViewManager] reloadMasterViewTable];
-
+    
     
 }
 
@@ -404,37 +408,25 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 #pragma mark - Convenient methods
-
-- (void) setTitleLabel:(UILabel *)label WithText:(NSString *)text {
-    label.textColor = [UIColor blackColor];
-    label.font = FONT_Futura_CondenseExtraBold(16);
-    label.text = text;
-}
-- (void) setLabel:(UILabel *)label WithText:(NSString *)text {
-    label.textColor = [UIColor blackColor];
-    label.font = FONT_Futura_Medium(16);
-    label.text = text;
+/* convenient methods to setup in place editing label */
+- (void) setIPELabel:(UILabel *)label WithText:(NSString *)text {
+    [[ViewManager sharedViewManager] setLabel:label WithText:text];
     KIInPlaceEditOptions *options = [KIInPlaceEditOptions longPressAndPromptToEdit];
-    
     label.userInteractionEnabled = YES;
-    
     [label ipe_enableInPlaceEdit:options];
     if (label.tag == 11) {
         [options setTarget:self action:@selector(textFieldDidBeginEditingForName:) forControlEvents:UIControlEventEditingDidBegin];
-        
     }
     else if (label.tag == 12) {
         [options setTarget:self action:@selector(textFieldDidBeginEditingForCompany:) forControlEvents:UIControlEventEditingDidBegin];
-        
     }
     else {
         [options setTarget:self action:@selector(textFieldDidBeginEditingForCell:) forControlEvents:UIControlEventEditingDidBegin];
-        
     }
 }
 
 #pragma mark - Actions
-
+/* add a new row in table */
 - (IBAction) addRow:(UIButton *)sender {
     NSIndexPath *indexPath;
     if (sender.tag == 0) {
@@ -460,14 +452,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [[ViewManager sharedViewManager] reloadMasterViewTable];
 }
 
+/* tap on favorite button */
 - (IBAction)tapOnFavorite:(id)sender {
     if (curContact.isFavorite == false) {
         curContact.isFavorite = true;
-            [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
+        [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
     }
     else {
         curContact.isFavorite = false;
-                    [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star-o".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
+        [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star-o".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
     }
     [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
 }
