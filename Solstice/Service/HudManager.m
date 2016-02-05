@@ -26,7 +26,6 @@
 - (void) bindOnView:(UIView *) view {
     self.bindedView = view;
 }
-//[UIApplication sharedApplication].keyWindow.rootViewController.view
 
 - (void) popTopHud {
     if ([self.hudsStack count] == 0) {
@@ -46,7 +45,6 @@
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        // Do something...
         task();
         
         [MBProgressHUD hideHUDForView:topView animated:YES];
@@ -58,17 +56,7 @@
     if(text == nil || [text length] == 0) {
         return;
     }
-    //    [MBProgressHUD hideHUDForView:self.bindedView animated:YES];
     NSLog(@"showing log with text %@",text);
-    //    MBProgressHUD *hud = [MBProgressHUD HUDForView:self.bindedView];
-    //    if (hud == nil) {
-    //        hud = [MBProgressHUD showHUDAddedTo:self.bindedView animated:MBProgressHUDAnimationZoomIn];
-    //
-    //    }
-    //    else {
-    //        [hud show:YES];
-    //    }
-    //        [MBProgressHUD hideHUDForView:self.bindedView animated:YES];
     NSArray *allHuds = [MBProgressHUD allHUDsForView:self.bindedView];
     if ([allHuds count] != 0) {
         MBProgressHUD *hud = [allHuds objectAtIndex:0];
@@ -77,7 +65,6 @@
     else {
         MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.bindedView animated:YES];
         hud.mode = MBProgressHUDModeText;
-        //    [hud setRemoveFromSuperViewOnHide:YES];
         [hud setDimBackground:YES];
         hud.labelText = text;
         [self.hudsStack addObject:hud];
@@ -92,13 +79,9 @@
     [self.hudsStack removeAllObjects];
 }
 
-- (void) hideAllHuds {
-    //        [_hud hide:YES];
-    
+- (void) hideAllHuds {    
     [MBProgressHUD hideAllHUDsForView:self.bindedView animated:YES];
     [self.hudsStack removeAllObjects];
-    //    [MBProgressHUD hideHUDForView:self.bindedView animated:YES];
-    
     
 }
 @end

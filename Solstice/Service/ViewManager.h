@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 @class MasterViewController;
 @class DetailViewController;
+@class ContactObject;
 @interface ViewManager : NSObject
 @property MasterViewController *masterView;
 @property DetailViewController *detailView;
 +(ViewManager *) sharedViewManager;
-- (void) reloadMasterViewOnSuccessfulDownload;
-- (void) reloadMasterViewOnFailedDownload;
+- (void) reloadMasterViewTable;
+- (void) reExtractFavoriteOnTappingFavorite;
+
+- (void) syncContacts;
 - (void) fetchContacts;
+- (void) fetchContactsDetailsOnContact:(ContactObject *)contact;
+
 - (void) setViewsMaster:(MasterViewController *) master DetailView:(DetailViewController*) detail;
 @end

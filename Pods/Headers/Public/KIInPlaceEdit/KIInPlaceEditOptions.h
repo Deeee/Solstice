@@ -1,0 +1,1 @@
+../../../KIInPlaceEdit/InPlaceEdit/Classes/KIInPlaceEditOptions.h

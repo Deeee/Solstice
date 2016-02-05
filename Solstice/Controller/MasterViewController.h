@@ -10,11 +10,14 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *contactTable;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property NSMutableArray *contactArray;
+@property NSMutableArray *searchResultArray;
+@property NSMutableArray *favoriteArray;
+@property (strong, nonatomic) UISearchController *resultSearchController;
 
 @end
 

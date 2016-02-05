@@ -27,6 +27,22 @@
     }
     return self;
 }
+
+- (void) reExtractFavoriteOnTappingFavorite {
+    masterView.favoriteArray = [ContactObject extractFavorites:masterView.contactArray];
+
+    [self syncContacts];
+    [self reloadMasterViewTable];
+}
+
+- (void) reloadMasterViewTable {
+    [masterView.contactTable reloadData];
+}
+
+- (void) syncContacts {
+    [JNKeychain saveValue:masterView.contactArray forKey:KEY_FOR_CONTACTS];
+}
+
 - (void) setViewsMaster:(MasterViewController *) master DetailView:(DetailViewController*) detail {
     masterView = master;
     detailView = detail;
@@ -55,7 +71,26 @@
         [[HudManager sharedHudManager] popTopHud];
         [[AlertViewManager sharedAlertViewManager] showNetworkErrorAlertTemporary];
     }];
-    [[HudManager sharedHudManager] showHudWithText:@"正在载入菜单..."];
+    [[HudManager sharedHudManager] showHudWithText:@"Downloading contacts..."];
+    [operation start];
+}
+
+- (void) fetchContactsDetailsOnContact:(ContactObject *)contact {
+    NSURL *url = [NSURL URLWithString:contact.detailsUrl];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setTimeoutInterval:120];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        [contact updateContactWithJson:responseObject];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@",[error localizedDescription]);
+        [[AlertViewManager sharedAlertViewManager] showNetworkErrorAlertTemporary];
+    }];
     [operation start];
 }
 @end

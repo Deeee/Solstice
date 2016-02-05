@@ -24,6 +24,12 @@
 		5BB4E8301C63E0C800351165 /* NSNull+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E82F1C63E0C800351165 /* NSNull+Json.m */; };
 		5BB4E8321C63E89900351165 /* whitePic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E8311C63E89900351165 /* whitePic.jpg */; };
 		5BB4E8341C63E8DA00351165 /* blackPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E8331C63E8DA00351165 /* blackPic.png */; };
+		5BB4E8381C63ED7400351165 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E8361C63ED7400351165 /* DetailTableViewCell.m */; };
+		5BB4E8391C63ED7400351165 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E8371C63ED7400351165 /* DetailTableViewCell.xib */; };
+		5BB4E83D1C63EFA500351165 /* Futura-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E83A1C63EFA500351165 /* Futura-Light.ttf */; };
+		5BB4E83E1C63EFA500351165 /* Futura-Extended.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E83B1C63EFA500351165 /* Futura-Extended.ttf */; };
+		5BB4E83F1C63EFA500351165 /* Futura-Extra Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BB4E83C1C63EFA500351165 /* Futura-Extra Bold.ttf */; };
+		5BB4E8421C63F66C00351165 /* JNKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB4E8411C63F66C00351165 /* JNKeychain.m */; };
 		CD13B1AA8CFE0827F891059C /* libPods-Solstice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFFBB78F600927E555D1F60 /* libPods-Solstice.a */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +54,7 @@
 		0BFFBB78F600927E555D1F60 /* libPods-Solstice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Solstice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1B6A4F6EEA44754B6FA79D /* Pods-Solstice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Solstice.release.xcconfig"; path = "Pods/Target Support Files/Pods-Solstice/Pods-Solstice.release.xcconfig"; sourceTree = "<group>"; };
 		5BB4E7DB1C63ACBA00351165 /* Solstice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solstice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BB4E7DF1C63ACBA00351165 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5BB4E7DF1C63ACBA00351165 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		5BB4E7E11C63ACBA00351165 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5BB4E7E21C63ACBA00351165 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5BB4E7E41C63ACBA00351165 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = Controller/MasterViewController.h; sourceTree = "<group>"; };
@@ -65,21 +71,29 @@
 		5BB4E8021C63ACBA00351165 /* SolsticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolsticeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB4E8061C63ACBA00351165 /* SolsticeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolsticeUITests.m; sourceTree = "<group>"; };
 		5BB4E8081C63ACBA00351165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5BB4E8181C63B3F600351165 /* ContactObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactObject.h; sourceTree = "<group>"; };
-		5BB4E8191C63B3F600351165 /* ContactObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactObject.m; sourceTree = "<group>"; };
-		5BB4E81F1C63B54400351165 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		5BB4E8201C63B8B800351165 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
-		5BB4E8211C63B8B800351165 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
+		5BB4E8181C63B3F600351165 /* ContactObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactObject.h; path = Model/ContactObject.h; sourceTree = "<group>"; };
+		5BB4E8191C63B3F600351165 /* ContactObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactObject.m; path = Model/ContactObject.m; sourceTree = "<group>"; };
+		5BB4E81F1C63B54400351165 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = "Supporting Files/Constants.h"; sourceTree = "<group>"; };
+		5BB4E8201C63B8B800351165 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewManager.h; path = Service/ViewManager.h; sourceTree = "<group>"; };
+		5BB4E8211C63B8B800351165 /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewManager.m; path = Service/ViewManager.m; sourceTree = "<group>"; };
 		5BB4E8231C63BA8E00351165 /* HudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HudManager.h; path = Service/HudManager.h; sourceTree = "<group>"; };
 		5BB4E8241C63BA8E00351165 /* HudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HudManager.m; path = Service/HudManager.m; sourceTree = "<group>"; };
-		5BB4E8261C63BC5900351165 /* AlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewManager.h; sourceTree = "<group>"; };
-		5BB4E8271C63BC5900351165 /* AlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewManager.m; sourceTree = "<group>"; };
+		5BB4E8261C63BC5900351165 /* AlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertViewManager.h; path = Service/AlertViewManager.h; sourceTree = "<group>"; };
+		5BB4E8271C63BC5900351165 /* AlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewManager.m; path = Service/AlertViewManager.m; sourceTree = "<group>"; };
 		5BB4E8291C63C44E00351165 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactTableViewCell.h; path = View/ContactTableViewCell.h; sourceTree = "<group>"; };
 		5BB4E82A1C63C44E00351165 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactTableViewCell.m; path = View/ContactTableViewCell.m; sourceTree = "<group>"; };
-		5BB4E82E1C63E0C800351165 /* NSNull+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Json.h"; sourceTree = "<group>"; };
-		5BB4E82F1C63E0C800351165 /* NSNull+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Json.m"; sourceTree = "<group>"; };
-		5BB4E8311C63E89900351165 /* whitePic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = whitePic.jpg; sourceTree = "<group>"; };
-		5BB4E8331C63E8DA00351165 /* blackPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPic.png; sourceTree = "<group>"; };
+		5BB4E82E1C63E0C800351165 /* NSNull+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+Json.h"; path = "Service/NSNull+Json.h"; sourceTree = "<group>"; };
+		5BB4E82F1C63E0C800351165 /* NSNull+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNull+Json.m"; path = "Service/NSNull+Json.m"; sourceTree = "<group>"; };
+		5BB4E8311C63E89900351165 /* whitePic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = whitePic.jpg; path = "Supporting Files/whitePic.jpg"; sourceTree = "<group>"; };
+		5BB4E8331C63E8DA00351165 /* blackPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackPic.png; path = "Supporting Files/blackPic.png"; sourceTree = "<group>"; };
+		5BB4E8351C63ED7400351165 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailTableViewCell.h; path = View/DetailTableViewCell.h; sourceTree = "<group>"; };
+		5BB4E8361C63ED7400351165 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailTableViewCell.m; path = View/DetailTableViewCell.m; sourceTree = "<group>"; };
+		5BB4E8371C63ED7400351165 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailTableViewCell.xib; path = View/DetailTableViewCell.xib; sourceTree = "<group>"; };
+		5BB4E83A1C63EFA500351165 /* Futura-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Futura-Light.ttf"; path = "Supporting Files/Futura-Light.ttf"; sourceTree = "<group>"; };
+		5BB4E83B1C63EFA500351165 /* Futura-Extended.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Futura-Extended.ttf"; path = "Supporting Files/Futura-Extended.ttf"; sourceTree = "<group>"; };
+		5BB4E83C1C63EFA500351165 /* Futura-Extra Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Futura-Extra Bold.ttf"; path = "Supporting Files/Futura-Extra Bold.ttf"; sourceTree = "<group>"; };
+		5BB4E8401C63F66C00351165 /* JNKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JNKeychain.h; path = Service/JNKeychain.h; sourceTree = "<group>"; };
+		5BB4E8411C63F66C00351165 /* JNKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JNKeychain.m; path = Service/JNKeychain.m; sourceTree = "<group>"; };
 		797999C45AFDB66EAF547F88 /* Pods-Solstice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Solstice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Solstice/Pods-Solstice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,9 +162,6 @@
 				5BB4E8141C63B25E00351165 /* Model */,
 				5BB4E7E11C63ACBA00351165 /* AppDelegate.h */,
 				5BB4E7E21C63ACBA00351165 /* AppDelegate.m */,
-				5BB4E8331C63E8DA00351165 /* blackPic.png */,
-				5BB4E8311C63E89900351165 /* whitePic.jpg */,
-				5BB4E81F1C63B54400351165 /* Constants.h */,
 				5BB4E7EA1C63ACBA00351165 /* Main.storyboard */,
 				5BB4E7ED1C63ACBA00351165 /* Assets.xcassets */,
 				5BB4E7EF1C63ACBA00351165 /* LaunchScreen.storyboard */,
@@ -163,6 +174,12 @@
 		5BB4E7DE1C63ACBA00351165 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5BB4E81F1C63B54400351165 /* Constants.h */,
+				5BB4E8331C63E8DA00351165 /* blackPic.png */,
+				5BB4E83A1C63EFA500351165 /* Futura-Light.ttf */,
+				5BB4E83B1C63EFA500351165 /* Futura-Extended.ttf */,
+				5BB4E83C1C63EFA500351165 /* Futura-Extra Bold.ttf */,
+				5BB4E8311C63E89900351165 /* whitePic.jpg */,
 				5BB4E7DF1C63ACBA00351165 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -200,6 +217,9 @@
 			children = (
 				5BB4E8291C63C44E00351165 /* ContactTableViewCell.h */,
 				5BB4E82A1C63C44E00351165 /* ContactTableViewCell.m */,
+				5BB4E8351C63ED7400351165 /* DetailTableViewCell.h */,
+				5BB4E8361C63ED7400351165 /* DetailTableViewCell.m */,
+				5BB4E8371C63ED7400351165 /* DetailTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -226,6 +246,8 @@
 				5BB4E8271C63BC5900351165 /* AlertViewManager.m */,
 				5BB4E82E1C63E0C800351165 /* NSNull+Json.h */,
 				5BB4E82F1C63E0C800351165 /* NSNull+Json.m */,
+				5BB4E8401C63F66C00351165 /* JNKeychain.h */,
+				5BB4E8411C63F66C00351165 /* JNKeychain.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -349,7 +371,11 @@
 				5BB4E7EE1C63ACBA00351165 /* Assets.xcassets in Resources */,
 				5BB4E7EC1C63ACBA00351165 /* Main.storyboard in Resources */,
 				5BB4E8341C63E8DA00351165 /* blackPic.png in Resources */,
+				5BB4E83E1C63EFA500351165 /* Futura-Extended.ttf in Resources */,
+				5BB4E83F1C63EFA500351165 /* Futura-Extra Bold.ttf in Resources */,
+				5BB4E8391C63ED7400351165 /* DetailTableViewCell.xib in Resources */,
 				5BB4E8321C63E89900351165 /* whitePic.jpg in Resources */,
+				5BB4E83D1C63EFA500351165 /* Futura-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +451,8 @@
 				5BB4E8251C63BA8E00351165 /* HudManager.m in Sources */,
 				5BB4E7E31C63ACBA00351165 /* AppDelegate.m in Sources */,
 				5BB4E7E61C63ACBA00351165 /* MasterViewController.m in Sources */,
+				5BB4E8421C63F66C00351165 /* JNKeychain.m in Sources */,
+				5BB4E8381C63ED7400351165 /* DetailTableViewCell.m in Sources */,
 				5BB4E8301C63E0C800351165 /* NSNull+Json.m in Sources */,
 				5BB4E8281C63BC5900351165 /* AlertViewManager.m in Sources */,
 				5BB4E8221C63B8B800351165 /* ViewManager.m in Sources */,
@@ -574,6 +602,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Solstice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.Solstice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,6 +615,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Solstice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Di-Liu.Solstice";
 				PRODUCT_NAME = "$(TARGET_NAME)";

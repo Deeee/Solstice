@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ContactObject;
+@interface DetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 
-@interface DetailViewController : UIViewController
-
-@property (strong, nonatomic) id detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) ContactObject * curContact;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
+@property (weak, nonatomic) IBOutlet UITableView *detailTable;
+@property (weak, nonatomic) IBOutlet UIButton *favorite;
 
 @end
 

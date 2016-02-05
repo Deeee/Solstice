@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "LLBootstrapButton/LLBootstrap/LLBootstrapFont.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError.png"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError@2x.png"
@@ -78,6 +79,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "TSMessages/Pod/Assets/TSMessagesDefaultDesign.json"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "LLBootstrapButton/LLBootstrap/LLBootstrapFont.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError.png"
   install_resource "TSMessages/Pod/Assets/NotificationBackgroundError@2x.png"

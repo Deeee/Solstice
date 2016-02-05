@@ -30,10 +30,9 @@
 - (id)objectForKey:(id)key { return nil; }
 
 - (BOOL)boolValue { return NO; }
-/* App crashes without this mark */
 
 - (NSInteger) count {return 0;}
-/* App crashes without those two mark */
+
 - (NSRange)rangeOfCharacterFromSet:(NSCharacterSet *)aSet{
     NSRange nullRange = {NSNotFound, 0};
     return nullRange;
