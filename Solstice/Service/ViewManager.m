@@ -69,7 +69,10 @@
         masterView.contactArray = [ContactObject parseContactJson:responseObject];
         [masterView.tableView reloadData];
         [masterView.tableView.mj_header endRefreshing];
-        [self reExtractFavoriteOnTappingFavorite];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
+        });
         [[HudManager sharedHudManager] popTopHud];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
