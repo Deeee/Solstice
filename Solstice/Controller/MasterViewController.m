@@ -28,40 +28,9 @@ static double kProfileBorderWidth = 3.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    /* navigation bar setup */
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
-    /* setup search controller */
-    [self setupSearchController];
-    /* setup refresh header */
-    [self setPullToRefreshForMasterView];
-    /* create blank view for table background */
-    self.contactTable.backgroundView = [[UIView alloc] init];
-    
-    
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    /* view manager setup */
-    [[HudManager sharedHudManager] bindOnView:self.view];
-    [[ViewManager sharedViewManager] setViewsMaster:self DetailView:self.detailViewController];
-    
-    /* get cache data */
-    NSMutableArray *contactsArray = [JNKeychain loadValueForKey:KEY_FOR_CONTACTS];
-    if (contactsArray == nil) {
-        [[ViewManager sharedViewManager] fetchContacts];
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
-        });
-        
-    }
-    else {
-        self.contactArray = contactsArray;
-        [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
-        
-    }
+    [self configureView];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
@@ -72,12 +41,15 @@ static double kProfileBorderWidth = 3.0f;
     [super didReceiveMemoryWarning];
 }
 
+/* insert a new contact into table */
 - (void)insertNewObject:(id)sender {
     if (!self.contactArray) {
         self.contactArray = [[NSMutableArray alloc] init];
     }
     [self.contactArray insertObject:[ContactObject new] atIndex:0];
     NSIndexPath *indexPath;
+    
+    /* insert based on search controller's activity */
     if (self.resultSearchController.active) {
         indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     }
@@ -86,6 +58,7 @@ static double kProfileBorderWidth = 3.0f;
     }
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    /* scroll to where the row is inserted */
     [self.contactTable scrollToRowAtIndexPath:indexPath
                              atScrollPosition:UITableViewScrollPositionTop
                                      animated:YES];
@@ -98,6 +71,7 @@ static double kProfileBorderWidth = 3.0f;
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ContactObject *contact;
+        /* set detail view controller based on search controller's activity */
         if (self.resultSearchController.active) {
             contact = [_searchResultArray objectAtIndex:indexPath.row];
         }
@@ -110,6 +84,7 @@ static double kProfileBorderWidth = 3.0f;
             }
         }
         
+        /* instanciate detail view controller */
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         [controller setCurContact:contact];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -157,7 +132,7 @@ static double kProfileBorderWidth = 3.0f;
     ContactTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CONTACT_CELL_IDENTIFIER];
     ContactObject *curContact;
     
-    
+    /* set cell based on search controller's activity */
     if (self.resultSearchController.active) {
         curContact = [_searchResultArray objectAtIndex:indexPath.row];
     }
@@ -171,11 +146,14 @@ static double kProfileBorderWidth = 3.0f;
     }
     cell.curContact = curContact;
     
+    /* set text on cell */
     [[ViewManager sharedViewManager] setTitleLabel:cell.profileNameLabel WithText:curContact.name];
     [[ViewManager sharedViewManager] setLabel:cell.profilePhoneLabel WithText:[curContact.homePhone firstObject]];
     
+    /* set profile image on cell */
     [cell.profileImageView sd_setImageWithURL:[NSURL URLWithString:curContact.smallImageUrl]
                              placeholderImage:[UIImage imageNamed:@"blackPic.jpg"]];
+    /* configure profile image */
     cell.profileImageView.layer.borderWidth = kProfileBorderWidth;
     cell.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.size.width / 2;
@@ -200,6 +178,8 @@ static double kProfileBorderWidth = 3.0f;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        /* edit table based on search controller's activity */
         if (self.resultSearchController.active) {
             ContactObject *contactObj = [self.searchResultArray objectAtIndex:indexPath.row];
             
@@ -216,6 +196,7 @@ static double kProfileBorderWidth = 3.0f;
             }
         }
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        /* sync with local after editing */
         [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
         [[ViewManager sharedViewManager] syncContacts];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -228,7 +209,7 @@ static double kProfileBorderWidth = 3.0f;
 
 - (void) setupSearchController
 {
-    
+    /* init and setup search controller */
     self.resultSearchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.resultSearchController.searchResultsUpdater = self;
     self.resultSearchController.dimsBackgroundDuringPresentation = false;
@@ -270,6 +251,7 @@ static double kProfileBorderWidth = 3.0f;
                                        options:NSCaseInsensitivePredicateOption];
         [searchItemsPredicate addObject:finalPredicate];
         
+        // phone field matching
         lhs = [NSExpression expressionForKeyPath:@"homePhone"];
         finalPredicate = [NSComparisonPredicate
                           predicateWithLeftExpression:lhs
@@ -289,6 +271,7 @@ static double kProfileBorderWidth = 3.0f;
     searchResults = [[searchResults filteredArrayUsingPredicate:finalCompoundPredicate] mutableCopy];
     _searchResultArray = [NSMutableArray arrayWithArray:searchResults];
     
+    // reload view after result is fetched
     [[ViewManager sharedViewManager] reloadMasterViewTable];
     
     
@@ -353,6 +336,42 @@ static double kProfileBorderWidth = 3.0f;
     self.contactTable.mj_header = header;
 }
 
+#pragma -mark view configuration 
+- (void)configureView {
+    /* navigation bar setup */
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    
+    /* setup search controller */
+    [self setupSearchController];
+    /* setup refresh header */
+    [self setPullToRefreshForMasterView];
+    /* create blank view for table background */
+    self.contactTable.backgroundView = [[UIView alloc] init];
+    
+    
+    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    /* view manager setup */
+    [[HudManager sharedHudManager] bindOnView:self.view];
+    [[ViewManager sharedViewManager] setViewsMaster:self DetailView:self.detailViewController];
+    
+    /* get cache data */
+    NSMutableArray *contactsArray = [JNKeychain loadValueForKey:KEY_FOR_CONTACTS];
+    if (contactsArray == nil) {
+        [[ViewManager sharedViewManager] fetchContacts];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
+        });
+        
+    }
+    else {
+        self.contactArray = contactsArray;
+        [[ViewManager sharedViewManager] reExtractFavoriteOnTappingFavorite];
+        
+    }
+}
 
 
 @end

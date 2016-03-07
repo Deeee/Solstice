@@ -45,6 +45,16 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 - (void)configureView {
+    
+    /* setup profile image */
+    self.profileImageView.layer.borderWidth = kProfileBorderWidth;
+    self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileImageView.layer.cornerRadius = kProfileCornerRadius;
+    self.profileImageView.clipsToBounds = YES;
+    
+    /* setup notification center */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldDidEndEditing) name:UIKeyboardWillHideNotification object:nil];
+
     /* Update the user interface for the detail item. */
     if (self.curContact) {
         self.nameLabel.tag = 11;
@@ -76,12 +86,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [super viewDidLoad];
     self.detailTable.dataSource = self;
     self.detailTable.delegate = self;
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldDidEndEditing) name:UIKeyboardWillHideNotification object:nil];
     
-    self.profileImageView.layer.borderWidth = kProfileBorderWidth;
-    self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.profileImageView.layer.cornerRadius = kProfileCornerRadius;
-    self.profileImageView.clipsToBounds = YES;
+
     /* initial setup for the view */
     [self configureView];
 }
@@ -119,9 +125,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 /* reconfigure header view */
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CGRect frame = tableView.frame;
+    /* reset header frame */
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 30)];
     [[ViewManager sharedViewManager] setTitleLabel:title WithText:kHeaderTitles[section]];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+    /* reconfigure header font and color */
     [headerView setBackgroundColor:[UIColor whiteColor]];
     [headerView addSubview:title];
     /* add a plus button if it is not birthdate section */
@@ -153,24 +161,31 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     /* get cell content accordingly */
     if (indexPath.section == 0) {
+        /* configure text for phone section */
+        
+        /* set text for home phone */
         if (indexPath.row < curContact.homePhone.count) {
             [self setIPELabel:cell.contentLabel WithText:[curContact.homePhone objectAtIndex:indexPath.row]];
             [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Home"];
         }
+        /* set text for mobile phone */
         else if(indexPath.row < (curContact.mobilePhone.count+curContact.homePhone.count)) {
             [self setIPELabel:cell.contentLabel WithText:[curContact.mobilePhone objectAtIndex:indexPath.row-curContact.homePhone.count]];
             [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Mobile"];
         }
+        /* set text for work phone */
         else {
             [self setIPELabel:cell.contentLabel WithText:[curContact.workPhone objectAtIndex:indexPath.row-curContact.homePhone.count-curContact.mobilePhone.count]];
             [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Work"];
         }
     }
     else if (indexPath.section == 1) {
+        /* configure text for address section */
         [self setIPELabel:cell.contentLabel WithText:[curContact.homeAddress objectAtIndex:indexPath.row]];
         [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Home"];
     }
     else if (indexPath.section == 2) {
+        /* configure text for birthday section */
         NSTimeInterval timeInterval = (NSTimeInterval)curContact.birthDate;
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -180,6 +195,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@" "];
     }
     else if (indexPath.section == 3) {
+        /* configure text for email section */
         [self setIPELabel:cell.contentLabel WithText:[curContact.workEmail objectAtIndex:indexPath.row]];
         [[ViewManager sharedViewManager] setTitleLabel:cell.categoryLabel WithText:@"Work"];
     }
@@ -194,7 +210,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if (indexPath.section == 0) {
-            
+            /* edit text for phone section */
+
             if (indexPath.row < curContact.homePhone.count) {
                 [curContact.homePhone removeObjectAtIndex:indexPath.row];
             }
@@ -206,13 +223,18 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
             }
         }
         else if(indexPath.section == 1) {
+            /* edit text for address section */
+            
             [curContact.homeAddress removeObjectAtIndex:indexPath.row];
             
         }
         else if(indexPath.section == 2) {
-            
+            /* edit text for birthday section */
+
         }
         else {
+            /* edit text for email section */
+
             [curContact.workEmail removeObjectAtIndex:indexPath.row];
         }
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -254,21 +276,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 
 #pragma mark - Keyboard text editing
+/* help method to dismiss keyboard */
 - (void) dismissKeyboard
 {
     UIWindow *mainWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
     [mainWindow endEditing:YES];
 }
 
-- (void) resignKeyboard:(id)sender
-{
-    [self dismissKeyboard];
-}
-
+/* notification center method */
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     tempTextField = textField;
     
+    /* calculating animation height */
     CGRect textFieldRect =
     [self.view.window convertRect:textField.bounds fromView:textField];
     CGRect viewRect =
@@ -292,6 +312,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         heightFraction = 1.0;
     }
     
+    /* decide based on orientation */
     UIInterfaceOrientation orientation =
     [[UIApplication sharedApplication] statusBarOrientation];
     if (orientation == UIInterfaceOrientationPortrait ||
@@ -307,6 +328,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
     
+    /* do animation */
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
@@ -338,6 +360,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self textFieldDidBeginEditing:textField];
 }
 
+/* notification center method */
 -(void)textFieldDidEndEditing
 {
     
@@ -353,6 +376,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [UIView commitAnimations];
     
     /* sync with model */
+    /* use textfield flag to distinguish labels */
+    /* 1 is name, 2 is company, 3 is for tableview cells */
     if (textfieldFlag == 1) {
         curContact.name = tempTextField.text;
     }
@@ -414,6 +439,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     KIInPlaceEditOptions *options = [KIInPlaceEditOptions longPressAndPromptToEdit];
     label.userInteractionEnabled = YES;
     [label ipe_enableInPlaceEdit:options];
+    /* use tag to distinguish different labels
+       11 is name, 12 is company */
     if (label.tag == 11) {
         [options setTarget:self action:@selector(textFieldDidBeginEditingForName:) forControlEvents:UIControlEventEditingDidBegin];
     }
@@ -429,6 +456,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 /* add a new row in table */
 - (IBAction) addRow:(UIButton *)sender {
     NSIndexPath *indexPath;
+    
+    /* use tag to distinguish different labels
+       0 is phone, 1 is address, 2 is birthday, 3 is email */
     if (sender.tag == 0) {
         indexPath = [NSIndexPath indexPathForRow:curContact.homePhone.count+curContact.mobilePhone.count+curContact.workPhone.count inSection:sender.tag];
         [curContact.workPhone insertObject:longPressPrompt atIndex:curContact.workPhone.count];
@@ -448,6 +478,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     
     [self.detailTable insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    /* sync contacts to local */
     [[ViewManager sharedViewManager] syncContacts];
     [[ViewManager sharedViewManager] reloadMasterViewTable];
 }
@@ -455,10 +486,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 /* tap on favorite button */
 - (IBAction)tapOnFavorite:(id)sender {
     if (curContact.isFavorite == false) {
+        /* make unfavorite */
         curContact.isFavorite = true;
         [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
     }
     else {
+        /* make favorite */
         curContact.isFavorite = false;
         [self.favorite setTitle:[NSString stringWithFormat:@"%@",@"fa-star-o".bs_awesomeIconRepresentation] forState:UIControlStateNormal];
     }

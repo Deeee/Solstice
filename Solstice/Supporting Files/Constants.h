@@ -26,6 +26,7 @@
 #import <LLBootstrap.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MJRefresh.h>
+
 #define KEY_FOR_CONTACTS @"contactArray"
 #define DOWNLOAD_URL @"https://solstice.applauncher.com/external/contacts.json"
 #define CONTACT_CELL_IDENTIFIER @"contactCell"
